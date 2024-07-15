@@ -27,7 +27,7 @@ export function CreateProductDialog() {
         onSuccess(_, variables) {
             // const cached = queryClient.getQueryData(['products'])
 
-            queryClient.setQueryData(['products'], (data: Product[]) => {
+            queryClient.setQueryData(['products', null, null], (data: Product[]) => {
                 return [...data, {
                     id: self.crypto.randomUUID(),
                     name: variables.name,
