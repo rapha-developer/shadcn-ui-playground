@@ -4,11 +4,16 @@ export interface Product {
     price: number
 }
 
-export async function getProducts() {
+interface GetProductsFilters {
+    id: string | null
+    name: string | null
+}
+export async function getProducts({ id, name }: GetProductsFilters) {
+
     //delay 1s
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    return [
+    let products = [
         { id: '20001', name: 'Product 1', price: 5000 },
         { id: '33002', name: 'Product 2', price: 3000 },
         { id: '45403', name: 'Product 3', price: 7000 },
@@ -22,6 +27,14 @@ export async function getProducts() {
         { id: '1205911', name: 'Product 11', price: 2000 },
         { id: '1368312', name: 'Product 12', price: 9000 }
     ];
+
+    if(id) {
+        products = products.filter((product) => product.id.toLowerCase().includes(id.toLowerCase()))
+    }
+    if(name) {
+        products = products.filter((product) => product.name.toLowerCase().includes(name.toLowerCase()))
+    }
+    return products
 }
 interface CreateProductRequest {
     name: string
@@ -31,6 +44,6 @@ export async function createProduct(_: CreateProductRequest) {
     //delay de 1s
     await new Promise(resolve => setTimeout(resolve, 1000))
 
-    console.log(_)
+    // console.log(_)
     return 
 }
