@@ -1,11 +1,12 @@
 import { z } from 'zod'
 import { useForm } from 'react-hook-form';
-
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Label } from "./ui/label";
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Product, createProduct } from '../data/products';
 
 const createProductSchema = z.object({
     name: z.string(),
@@ -15,12 +16,38 @@ const createProductSchema = z.object({
 type CreateProductSchema = z.infer<typeof createProductSchema>
 
 export function CreateProductDialog() {
+    const queryClient = useQueryClient()
+
     const {register, handleSubmit} = useForm<CreateProductSchema>({
         resolver: zodResolver(createProductSchema)
     })
     
-    function handleCreateProduct(data: CreateProductSchema) {
-        console.log(data)
+    const { mutateAsync: createProductFn } = useMutation({
+        mutationFn: createProduct,
+        onSuccess(_, variables) {
+            // const cached = queryClient.getQueryData(['products'])
+
+            queryClient.setQueryData(['products'], (data: Product[]) => {
+                return [...data, {
+                    id: self.crypto.randomUUID(),
+                    name: variables.name,
+                    price: variables.price
+                }]
+            })
+        }
+    })
+
+    async function handleCreateProduct(data: CreateProductSchema) {
+        try {
+            await createProductFn({
+                name: data.name,
+                price: data.price
+            })
+
+            alert('Produto cadastrado com sucesso!')
+        } catch(err) {
+            alert('Erro ao cadastrar produto')
+        }
     }
     return (
         <DialogContent>
