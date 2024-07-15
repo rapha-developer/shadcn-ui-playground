@@ -13,12 +13,22 @@ import {
 } from "../components/ui/table";
 import { PlusCircle } from "lucide-react";
 import { getProducts } from "../data/products";
+import { useSearchParams } from "react-router-dom";
 
 export function Products() {
+    const [searchParams] = useSearchParams()
+
+    const id = searchParams.get('id')
+    const name = searchParams.get('name')
+    
     const { data: products } = useQuery({
-        queryKey: ["products"],
-        queryFn: getProducts,
+        queryKey: ["products", id, name],
+        queryFn: () => getProducts({
+            id,
+            name
+        }),
     });
+
     return (
         <div className="p-6 max-w-4xl mx-auto space-y-4">
             <h1 className="text-3xl font-bold">Produtos</h1>
