@@ -21,7 +21,7 @@ export const Hero = () => {
                     </div>
                 </div>
                 <div className="col-span-12 md:col-span-5">
-                    <img src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/about-2.webp" 
+                    <img src="/avatar-1-1.webp" 
                         decoding="async" 
                         alt="Man walk" 
                         className="w-full animate-morph" 
