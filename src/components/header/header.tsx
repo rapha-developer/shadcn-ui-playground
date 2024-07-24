@@ -23,7 +23,7 @@ export const Header = () => {
     }, [])
     const headerClass = (scrollPosition == 0) ? 'container mx-auto mt-[31px] rounded-rap-large' : 'fixed top-0 left-0 w-full '
     return (
-        <header className={`${headerClass} bg-white border border-solid border-border shadow-rap-boxes-shadow transition-all`}>
+        <header className={`${headerClass} bg-white border border-solid border-border shadow-rap-boxes-shadow transition-all z-50`}>
             <div className="header-wrapper max-w-7xl mx-auto flex items-center justify-between py-5 px-2 md:px-10">
                 <div className="header-group hidden md:flex items-center gap-[6px]">
                     <Dialog>
