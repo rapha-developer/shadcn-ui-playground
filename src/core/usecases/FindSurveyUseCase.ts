@@ -1,6 +1,6 @@
 import { Survey } from "../entities/Survey";
 
-export class FindSurveyByTitle {
+export class FindSurveyByTitleUseCase {
     constructor(private survey: Survey | null) {}
 
     execute(): Survey | null {
