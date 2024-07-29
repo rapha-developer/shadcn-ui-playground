@@ -16,7 +16,7 @@ export const HeaderSearchDialog = () => {
                     <Input className="col-span-9" id="search" />
                 </div>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button type="button" variant={'outline'}>
                             Cancelar
                         </Button>
