@@ -1,3 +1,4 @@
+import { QuestionProps } from "../../types/question"
 import { Survey } from "../entities/Survey"
 
 
@@ -9,6 +10,7 @@ export class CreateSurveyUseCase {
             text:  "CSS" | "componentes" | "bloco" | "guias",
             color: '#3aa9fd' | '#ff2ed9' | '#227dff' | '#6A4EE9'
         },
+        private questions: QuestionProps[],
         private id?: string
     ) {}
 
@@ -18,6 +20,7 @@ export class CreateSurveyUseCase {
             title: this.title,
             resume: this.resume,
             category: this.category,
+            questions: this.questions
         })
     }
 }
