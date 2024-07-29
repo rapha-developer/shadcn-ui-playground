@@ -1,4 +1,5 @@
 import { QuestionProps } from "../../types/question"
+import { SurveyProps } from "../../types/survey"
 import { Survey } from "../entities/Survey"
 
 
@@ -6,10 +7,7 @@ export class CreateSurveyUseCase {
     constructor(
         private title: string,
         private resume: string,
-        private category: {
-            text:  "CSS" | "componentes" | "bloco" | "guias",
-            color: '#3aa9fd' | '#ff2ed9' | '#227dff' | '#6A4EE9'
-        },
+        private category: SurveyProps['category'],
         private questions: QuestionProps[],
         private id?: string
     ) {}
