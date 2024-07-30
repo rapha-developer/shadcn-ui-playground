@@ -6,7 +6,8 @@ export class SurveyViewModel {
             id: survey.id,
             title: survey.title,
             resume: survey.resume,
-            category: survey.category
+            category: survey.category,
+            questions: survey.questions
         }
     }
 }
